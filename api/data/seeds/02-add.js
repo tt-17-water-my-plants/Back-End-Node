@@ -1,7 +1,7 @@
 const users = [
-    {username:"mike",password:"1234",phone_number:"3121234567"},
-    {username:"tony",password:"1234",phone_number:"3121234567"},
-    {username:"harry",password:"1234",phone_number:"3121234567"}
+    {username:"Mike",password:"$2a$08$fCF0nYPBzSNiVp1TNuq9dOTQYfFMOh1tH6gX0y8PF6VEU9Y0LUZNO",phone_number:"9172828221"},
+    {username:"Admin",password:"$2a$08$g59SC5rZujtPot8yXfiN7u32NGkpwU9hwrN48tdML4yDefCVdUdAC",phone_number:"1234567891"},
+    {username:"Gary",password:"$2a$08$QEBuJw0BUp.flMm2YqX5BuPOJkgu4n.eoKlvXIjWLAJVF8Yy2FDEy",phone_number:"9171234567"}
 ]
 
 const spec = [
