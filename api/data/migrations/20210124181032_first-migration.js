@@ -10,11 +10,11 @@ exports.up = async (knex) => {
     .createTable('species', tbl =>{
       tbl.increments('species_id')
       tbl.string('species_name').unique().notNullable()
-      tbl.string('h2oFrequency').notNullable()
     })
     .createTable('plants', tbl => {
       tbl.increments('plant_id')
       tbl.string('nickname').unique().notNullable()
+      tbl.string('h2oFrequency').notNullable()
       tbl.integer('species_id')
         .unsigned()
         .notNullable()
