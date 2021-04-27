@@ -27,6 +27,7 @@ const remove = async (id) => {
     await db('users').where({id}).del()
     return old
 }
+
 const getPlants = (id) => {
     return db('users as u')
     .leftJoin('plants as p','u.id','p.user_id')
@@ -35,8 +36,6 @@ const getPlants = (id) => {
     .where({id})
     .orderBy('p.plant_id')
 }
-
-
 
 module.exports = {
     getAll,

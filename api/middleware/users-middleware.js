@@ -131,6 +131,20 @@ const restricted = (req, res, next) => {
     }
 }
 
+const checkAccess = (req, res, next) => {
+    const checker = req.decodedToken
+    const {id} = req.params;
+    if(checker && id){
+        if(checker.id == id){
+            next()
+        } else{
+            res.status(401).json({message:"this is not for you"})
+        }
+    } else{
+        next()
+    }
+}
+
 module.exports = {
     checkUsernameReg,
     checkPassword,
@@ -138,5 +152,6 @@ module.exports = {
     checkPhoneLog,
     checkUsernameLog,
     transform,
-    restricted
+    restricted,
+    checkAccess
 }

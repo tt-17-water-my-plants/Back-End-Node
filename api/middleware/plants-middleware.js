@@ -34,19 +34,39 @@ const checkOther = async(req,res,next) => {
     if(!nickname && !frequency){
         next()
     } else{
-        if(nickname){
-            req.plants = {...req.plants,nickname:nickname}
-        }
         if(frequency){
             req.plants = {...req.plants,frequency:frequency}
+        }
+        if(nickname){
+            req.plants = {...req.plants,nickname:nickname}
         }
         next()
     }
 }
 
+const checkDecoded = (req, res, next) => {
+    const checkDecoded = req.decodedToken;
+    if(checkDecoded && checkDecoded.username === req.plant.owner){
+        next()
+    } else{
+        res.status(401).json({message:`This is a content for user ${req.plant.owner}`})
+    }
+}
+
+const checkNickname = async(req,res,next) => {
+    const {nickname} = req.plants
+    const {id} = req.params;
+    const checkId = await Plants.getPlantById(id)
+    const ifExist = await Plants.getPlantByFilter({nickname});
+    (ifExist[0] && checkId.plant_id !== ifExist[0].plant_id)
+    ? res.status(401).json({message:`plant with nickname ${nickname} already exists`})
+    : next()
+}
 
 module.exports = {
     checkIfPlantExists,
     checkSpecies,
-    checkOther
+    checkOther,
+    checkDecoded,
+    checkNickname
 }

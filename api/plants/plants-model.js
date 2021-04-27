@@ -17,6 +17,10 @@ const getPlantById = (plant_id) => {
     .first()
 }
 
+const getPlantByFilter = (filter) => {
+    return db('plants').where(filter)
+}
+
 const addPlant = async (plant) => {
     const [plant_id] = await db('plants').insert(plant,'plant_id')
     return getPlantById(plant_id)
@@ -41,7 +45,6 @@ const addSpecies = async(species_name) => {
     return db('species').where({species_id}).first()
 }
 
-
 module.exports = {
     getAllPlants,
     getPlantById,
@@ -49,5 +52,6 @@ module.exports = {
     deletePlant,
     getSpecies,
     addSpecies,
-    addPlant
+    addPlant,
+    getPlantByFilter
 }

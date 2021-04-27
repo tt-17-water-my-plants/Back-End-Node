@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const Plants = require('./plants-model');
-const {checkIfPlantExists, checkSpecies, checkOther} = require('../middleware/plants-middleware')
+const {checkIfPlantExists, checkSpecies, checkOther, checkDecoded, checkNickname} = require('../middleware/plants-middleware')
 
 router.get('/',(req,res,next) => {
     Plants.getAllPlants()
@@ -10,11 +10,11 @@ router.get('/',(req,res,next) => {
         .catch(next)
 })
 
-router.get('/:id',checkIfPlantExists, (req,res) => {
-    res.status(200).json(req.plant)
+router.get('/:id',checkIfPlantExists, checkDecoded, (req,res) => {
+        res.status(200).json(req.plant)
 })
 
-router.put('/:id',checkIfPlantExists, checkSpecies, checkOther,(req,res,next)=>{
+router.put('/:id',checkIfPlantExists, checkSpecies, checkOther, checkDecoded, checkNickname, (req,res,next)=>{
     const {id} = req.params;
     if(req.plants){
         Plants.changePlant(id,req.plants)
@@ -27,7 +27,7 @@ router.put('/:id',checkIfPlantExists, checkSpecies, checkOther,(req,res,next)=>{
     }
 })
 
-router.delete('/:id',checkIfPlantExists,(req,res,next) => {
+router.delete('/:id',checkIfPlantExists, checkDecoded, (req,res,next) => {
     const {id} = req.params;
     Plants.deletePlant(id)
         .then(plant => {
@@ -35,6 +35,5 @@ router.delete('/:id',checkIfPlantExists,(req,res,next) => {
         })
         .catch(next)
 })
-
 
 module.exports = router;
