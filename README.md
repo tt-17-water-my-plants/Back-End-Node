@@ -2,7 +2,7 @@
 
 User needs a token to get list of plants and users. 
 Specific plant belong to user or user's information only available to user who logged in and related with user's information and plant.
-
+If user adds or creates a plant with species_name which not exists, the new specie would be created in database
 
 #### User register:
 
