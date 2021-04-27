@@ -36,6 +36,8 @@ const getPlants = (id) => {
     .orderBy('p.plant_id')
 }
 
+
+
 module.exports = {
     getAll,
     getById,

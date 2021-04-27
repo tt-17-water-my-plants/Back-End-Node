@@ -1,4 +1,3 @@
-const db = require('../data/db-config')
 const Plants = require('../plants/plants-model')
 
 const checkIfPlantExists = async(req,res,next) => {
