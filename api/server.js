@@ -17,6 +17,7 @@ server.use('/api/plants',restricted,plantsRouter)
 server.use('*',(req,res) => {
     res.status(404).json({message:"Page not found!"})
 })
+// eslint-disable-next-line no-unused-vars
 server.use((err,req,res,next) => {
     res.status(500).json({message:'Error!', error:err.message})
 })

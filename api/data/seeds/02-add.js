@@ -11,6 +11,9 @@ const spec = [
     {species_name:"banana"},
     {species_name:"celery"},
     {species_name:"egg"},
+    {species_name:"ice_cream"},
+    {species_name:"coke"},
+    {species_name:"headphones"},
 ]
 
 const plants = [
@@ -18,8 +21,14 @@ const plants = [
     {nickname:"usr21",frequency:"2d",species_id:2,user_id:2},
     {nickname:"usr3",frequency:"3d",species_id:3,user_id:3},
     {nickname:"usr11",frequency:"1d",species_id:4,user_id:1},
-    {nickname:"usr2",frequency:"2d",species_id:5,user_id:2},
+    {nickname:"usr2",frequency:"2d",species_id:8,user_id:2},
     {nickname:"usr33",frequency:"3d",species_id:6,user_id:3},
+    {nickname:"monitor",frequency:"1hr",species_id:1,user_id:1},
+    {nickname:"headphones",frequency:"7d",species_id:7,user_id:2},
+    {nickname:"towel",frequency:"2.5d",species_id:3,user_id:3},
+    {nickname:"cow",frequency:"1d",species_id:9,user_id:1},
+    {nickname:"camel",frequency:"2d",species_id:5,user_id:2},
+    {nickname:"case",frequency:"3d",species_id:6,user_id:3},
 ]
 
 exports.seed = async function(knex){
