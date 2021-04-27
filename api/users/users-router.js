@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { transform } = require('../middleware/users-middleware')
 const Users = require('./users-model')
 
 router.get('/',(req,res,next) => {
@@ -9,13 +10,8 @@ router.get('/',(req,res,next) => {
         .catch(next)
 })
 
-router.get('/:id',(req,res,next) => {
-    const {id} = req.params
-    Users.getById(id)
-        .then(users => {
-            res.status(200).json(users)
-        })
-        .catch(next)
+router.get('/:id', transform, (req,res) => {
+    res.status(200).json(req.transformed)
 })
 
 

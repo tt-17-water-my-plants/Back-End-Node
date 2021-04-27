@@ -11,6 +11,7 @@ server.use(cors())
 
 server.use('/api/users', usersRouter)
 server.use('/api/',authRouter)
+server.use('/api/plants',plantsRouter)
 
 server.use('*',(req,res) => {
     res.status(404).json({message:"Page not found!"})

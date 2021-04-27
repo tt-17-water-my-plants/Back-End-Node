@@ -1,7 +1,7 @@
 const db = require('../data/db-config')
 
 const getAll = () => {
-    return db('users')
+    return db('users').select('id','username')
 }
 
 const getById = id => {
@@ -27,6 +27,14 @@ const remove = async (id) => {
     await db('users').where({id}).del()
     return old
 }
+const getPlants = (id) => {
+    return db('users as u')
+    .leftJoin('plants as p','u.id','p.user_id')
+    .leftJoin('species as s','s.species_id','p.species_id')
+    .select('u.id','u.username','u.phone_number','p.plant_id','p.nickname','s.species_name','p.frequency')
+    .where({id})
+    .orderBy('p.plant_id')
+}
 
 module.exports = {
     getAll,
@@ -34,5 +42,6 @@ module.exports = {
     getBy,
     add,
     update,
-    remove
+    remove,
+    getPlants
 }

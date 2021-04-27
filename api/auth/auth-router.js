@@ -21,7 +21,22 @@ router.post('/register', checkUsernameReg, checkPassword, checkPhoneReg, (req,re
         .catch(next)
 })
 
-router.post('/login', checkPhoneLog, checkPassword, (req,res) => {
+router.post('/login', checkUsernameLog, checkPassword, (req,res) => {
+    const user = req.user;
+    const {password} = req.body;
+    if (bcrypt.compareSync(password,user.password)){
+        const token = createToken(user)
+        res.status(200).json({
+            message:`welcome ${user.username}`,
+            id:user.id,
+            token
+        })
+    } else{
+        res.status(401).json({message:"invalid credentials"})
+    }
+})
+
+router.post('/login-phone', checkPhoneLog, checkPassword, (req,res) => {
     const user = req.user;
     const {password} = req.body;
     if (bcrypt.compareSync(password,user.password)){

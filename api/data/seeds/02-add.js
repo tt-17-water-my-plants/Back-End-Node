@@ -6,17 +6,20 @@ const users = [
 
 const spec = [
     {species_name:"garlic"},
-    {species_name:"purple"},
-    {species_name:"potato"}
+    {species_name:"tomato"},
+    {species_name:"potato"},
+    {species_name:"banana"},
+    {species_name:"celery"},
+    {species_name:"egg"},
 ]
 
 const plants = [
-    {nickname:"good",h2oFrequency:"1d",species_id:1,user_id:1},
-    {nickname:"bad",h2oFrequency:"1d",species_id:1,user_id:1},
-    {nickname:"ugly",h2oFrequency:"1d",species_id:2,user_id:2},
-    {nickname:"lovely",h2oFrequency:"1d",species_id:1,user_id:2},
-    {nickname:"cac",h2oFrequency:"1d",species_id:3,user_id:3},
-    {nickname:"dag",h2oFrequency:"1d",species_id:3,user_id:1},
+    {nickname:"usr1",frequency:"1d",species_id:1,user_id:1},
+    {nickname:"usr21",frequency:"2d",species_id:2,user_id:2},
+    {nickname:"usr3",frequency:"3d",species_id:3,user_id:3},
+    {nickname:"usr11",frequency:"1d",species_id:4,user_id:1},
+    {nickname:"usr2",frequency:"2d",species_id:5,user_id:2},
+    {nickname:"usr33",frequency:"3d",species_id:6,user_id:3},
 ]
 
 exports.seed = async function(knex){
