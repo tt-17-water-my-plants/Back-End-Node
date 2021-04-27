@@ -89,7 +89,7 @@ Body:                                     |           Response:
                                           |                "owner": "Mike"
                                           |            },
                                           |            {
-                                          |                "plant_id": 2,
+                                          |                "plant_id": 4,
                                           |                "nickname": "usr21",
                                           |                "frequency": "2d",
                                           |                "species_name": "tomato",
