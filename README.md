@@ -28,8 +28,8 @@ Body:                                     |            Response:
 
 #### All users:
 
-here and below you need a valid token to get and access to endpoints
 [GET] `/api/users`
+here and below you need a valid token to get and access to endpoints
 
 ```javascript
 Body:                                     |           Response:
