@@ -1,4 +1,4 @@
-# API DOCS / https://usemytechstuff.herokuapp.com
+# API DOCS / https://tt17plants.herokuapp.com/
 
 #### User register:
 
@@ -28,6 +28,7 @@ Body:                                     |            Response:
 
 #### All users:
 
+here and below you need a valid token to get and access to endpoints
 [GET] `/api/users`
 
 ```javascript

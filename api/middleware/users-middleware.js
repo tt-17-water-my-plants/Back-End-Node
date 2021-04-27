@@ -1,4 +1,5 @@
 const Users = require('../users/users-model');
+const jwt = require('jsonwebtoken')
 
 const checkUsernameReg = async(req,res,next) => {
     let {username} = req.body;
@@ -113,11 +114,29 @@ const transform = async (req,res,next) => {
     }
 } 
 
+const restricted = (req, res, next) => {
+    const token = req.headers.authorization
+    if (!token){
+      res.status(401).json({"message": "Token required"})
+    } else {
+      jwt.verify(token,process.env.JWT_SECRET,(err,decoded) => {
+        if (err){
+          res.status(401).json({"message": "Token invalid"})
+        }
+        else{
+          req.decodedToken = decoded
+          next()
+        }
+      })
+    }
+}
+
 module.exports = {
     checkUsernameReg,
     checkPassword,
     checkPhoneReg,
     checkPhoneLog,
     checkUsernameLog,
-    transform
+    transform,
+    restricted
 }
