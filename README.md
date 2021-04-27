@@ -1,4 +1,4 @@
-# API DOCS / https://usemytechstuff.herokuapp.com
+# API DOCS / https://tt17plants.herokuapp.com/
 
 #### User register:
 
