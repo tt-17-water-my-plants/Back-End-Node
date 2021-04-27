@@ -1,5 +1,9 @@
 # API DOCS / https://tt17plants.herokuapp.com/
 
+User needs a token to get list of plants and users. 
+Specific plant belong to user or user's information only available to user who logged in and related with user's information and plant.
+
+
 #### User register:
 
 [POST] `/api/register`
