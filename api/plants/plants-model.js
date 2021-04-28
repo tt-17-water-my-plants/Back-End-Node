@@ -2,17 +2,17 @@ const db = require('../data/db-config')
 
 const getAllPlants = () => {
     return db('plants as p')
-    .leftJoin('species as s','p.species_id','s.species_id')
+    .leftJoin('specs as s','p.specs_id','s.specs_id')
     .leftJoin('users as u','u.id','p.user_id')
-    .select('p.plant_id','p.nickname','p.frequency','s.species_name','u.username as owner')
+    .select('p.plant_id','p.nickname','p.h2oFrequency','s.species','u.username as owner')
     .orderBy('plant_id')
 }
 
 const getPlantById = (plant_id) => {
      return db('plants as p')
-    .leftJoin('species as s','p.species_id','s.species_id')
+    .leftJoin('specs as s','p.specs_id','s.specs_id')
     .leftJoin('users as u','u.id','p.user_id')
-    .select('p.plant_id','p.nickname','p.frequency','s.species_name','u.username as owner')
+    .select('p.plant_id','p.nickname','p.h2oFrequency','s.species','u.username as owner')
     .where({plant_id})
     .first()
 }
@@ -36,13 +36,13 @@ const deletePlant = async(plant_id) => {
     return old
 }
 
-const getSpecies = (species_name) => {
-    return db('species').where({species_name}).first()
+const getspecs = (species) => {
+    return db('specs').where({species}).first()
 }
 
-const addSpecies = async(species_name) => {
-    const [species_id] = await db('species').insert(species_name,'species_id')
-    return db('species').where({species_id}).first()
+const addspecs = async(species) => {
+    const [specs_id] = await db('specs').insert(species,'specs_id')
+    return db('specs').where({specs_id}).first()
 }
 
 module.exports = {
@@ -50,8 +50,8 @@ module.exports = {
     getPlantById,
     changePlant,
     deletePlant,
-    getSpecies,
-    addSpecies,
+    getspecs,
+    addspecs,
     addPlant,
     getPlantByFilter
 }

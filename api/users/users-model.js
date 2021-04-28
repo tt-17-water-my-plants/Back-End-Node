@@ -31,8 +31,8 @@ const remove = async (id) => {
 const getPlants = (id) => {
     return db('users as u')
     .leftJoin('plants as p','u.id','p.user_id')
-    .leftJoin('species as s','s.species_id','p.species_id')
-    .select('u.id','u.username','u.phone_number','p.plant_id','p.nickname','s.species_name','p.frequency')
+    .leftJoin('specs as s','s.specs_id','p.specs_id')
+    .select('u.id','u.username','u.phone_number','p.plant_id','p.nickname','s.species','p.h2oFrequency')
     .where({id})
     .orderBy('p.plant_id')
 }

@@ -1,8 +1,8 @@
 # API DOCS / https://tt17plants.herokuapp.com/
 
-User needs a token to get list of plants and users. 
+User needs a token to get list of plants and users.
 Specific plant belong to user or user's information only available to user who logged in and related with user's information and plant.
-If user adds or creates a plant with species_name which not exists, the new specie would be created in database
+If user adds or creates a plant with species which not exists, the new specie would be created in database
 
 #### User register:
 
@@ -64,14 +64,14 @@ Body:                                     |           Response:
                                           |                        {
                                           |                          "plant_id": 1,
                                           |                          "nickname": "nick1",
-                                          |                          "species": "banana",
-                                          |                          "frequency": "1d"
+                                          |                          "specs": "banana",
+                                          |                          "h2oFrequency": "1d"
                                           |                        },
                                           |                        {
                                           |                          "plant_id": 2,
                                           |                          "nickname": "nick2",
-                                          |                          "species": "cream",
-                                          |                          "frequency": "2d"
+                                          |                          "specs": "cream",
+                                          |                          "h2oFrequency": "2d"
                                           |                        },
                                           |                       ]
                                           |           }
@@ -88,15 +88,15 @@ Body:                                     |           Response:
                                           |             {
                                           |              "plant_id": 1,
                                           |                "nickname": "usr1",
-                                          |                "frequency": "1d",
-                                          |                "species_name": "cream",
+                                          |                "h2oFrequency": "1d",
+                                          |                "species": "cream",
                                           |                "owner": "Mike"
                                           |            },
                                           |            {
                                           |                "plant_id": 4,
                                           |                "nickname": "usr21",
-                                          |                "frequency": "2d",
-                                          |                "species_name": "tomato",
+                                          |                "h2oFrequency": "2d",
+                                          |                "species": "tomato",
                                           |                "owner": "Admin"
                                           |            }, ...
                                           |           ]
@@ -112,10 +112,10 @@ Body:                                     |           Response:
 {                                         |           {
                                           |             "message":"plant created!"
   "nickname": string                      |             "plant":{
-  "frequency": string                     |                  "plant_id": 7,      |
-  "species_name": string                  |                  "nickname": "one",
-}                                         |                  "frequency": "1hr",
-                                          |                  "species_name": "cactus",
+  "h2oFrequency": string                     |                  "plant_id": 7,      |
+  "species": string                  |                  "nickname": "one",
+}                                         |                  "h2oFrequency": "1hr",
+                                          |                  "species": "cactus",
                                           |                  "owner":"Mike"
                                           |              }
                                           |           }
@@ -131,10 +131,10 @@ Body:                                     |           Response:
 {                                         |           {
                                           |             "message":"updated!",
   "nickname": string                      |             "updated": {
-  "frequency": string                     |                 "plant_id": 1,
-  "species_name": string                  |                 "nickname": "check",
-                                          |                 "frequency": "1d",
-}                                         |                 "species_name": "lemon",
+  "h2oFrequency": string                     |                 "plant_id": 1,
+  "species": string                  |                 "nickname": "check",
+                                          |                 "h2oFrequency": "1d",
+}                                         |                 "species": "lemon",
                                           |                 "owner": "Mike"
                                           |              }
                                           |           }
@@ -151,8 +151,8 @@ Body:                                     |           Response:
                                           |              "deleted": {
                                           |                "plant_id": 5,
                                           |                 "nickname": "usr2",
-                                          |                 "frequency": "2d",
-                                          |                 "species_name": "celery",
+                                          |                 "h2oFrequency": "2d",
+                                          |                 "species": "celery",
                                           |                 "username": "Admin"
                                           |                }
                                           |            }

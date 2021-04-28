@@ -16,7 +16,7 @@ router.post('/register', checkUsernameReg, checkPassword, checkPhoneReg, (req,re
     user.password = hash;
     Users.add(user)
         .then(newUser => {
-            res.status(201).json({message:"You successfully registered!", user})
+            res.status(201).json({message:"You successfully registered!", user:newUser})
         })
         .catch(next)
 })

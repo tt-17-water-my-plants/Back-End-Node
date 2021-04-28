@@ -11,17 +11,17 @@ const checkIfPlantExists = async(req,res,next) => {
     }
 }
 
-const checkSpecies = async(req,res,next) =>{
-    let {species_name} = req.body;
-    if(species_name && species_name.trim() !==''){
-        species_name = species_name.trim().toLowerCase()
-        const checkSpec = await Plants.getSpecies(species_name)
+const checkspecs = async(req,res,next) =>{
+    let {species} = req.body;
+    if(species && species.trim() !==''){
+        species = species.trim().toLowerCase()
+        const checkSpec = await Plants.getspecs(species)
         if(checkSpec){
-            req.plants = {...req.plants,species_id:checkSpec.species_id}
+            req.plants = {...req.plants,specs_id:checkSpec.specs_id}
             next()
         }else{
-            const check = await Plants.addSpecies({species_name})
-            req.plants = {...req.plants,species_id:check.species_id}
+            const check = await Plants.addspecs({species})
+            req.plants = {...req.plants,specs_id:check.specs_id}
             next()
         }
     }else{
@@ -30,12 +30,12 @@ const checkSpecies = async(req,res,next) =>{
 }
 
 const checkOther = async(req,res,next) => {
-    let {nickname, frequency} = req.body;
-    if(!nickname && !frequency){
+    let {nickname, h2oFrequency} = req.body;
+    if(!nickname && !h2oFrequency){
         next()
     } else{
-        if(frequency){
-            req.plants = {...req.plants,frequency:frequency}
+        if(h2oFrequency){
+            req.plants = {...req.plants,h2oFrequency:h2oFrequency}
         }
         if(nickname){
             req.plants = {...req.plants,nickname:nickname}
@@ -65,7 +65,7 @@ const checkNickname = async(req,res,next) => {
 
 module.exports = {
     checkIfPlantExists,
-    checkSpecies,
+    checkspecs,
     checkOther,
     checkDecoded,
     checkNickname

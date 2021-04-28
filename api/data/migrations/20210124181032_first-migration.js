@@ -7,19 +7,19 @@ exports.up = async (knex) => {
       users.string('phone_number', 320).notNullable()
       users.timestamps(false, true)
     })
-    .createTable('species', tbl =>{
-      tbl.increments('species_id')
-      tbl.string('species_name').unique().notNullable()
+    .createTable('specs', tbl =>{
+      tbl.increments('specs_id')
+      tbl.string('species').unique().notNullable()
     })
     .createTable('plants', tbl => {
       tbl.increments('plant_id')
       tbl.string('nickname').unique().notNullable()
-      tbl.string('frequency').notNullable()
-      tbl.integer('species_id')
+      tbl.string('h2oFrequency').notNullable()
+      tbl.integer('specs_id')
         .unsigned()
         .notNullable()
-        .references('species_id')
-        .inTable('species')
+        .references('specs_id')
+        .inTable('specs')
         .onUpdate('RESTRICT')
         .onDelete('RESTRICT')
       tbl.integer('user_id')
@@ -35,6 +35,6 @@ exports.up = async (knex) => {
 exports.down = async (knex) => {
   await knex.schema
   .dropTableIfExists('plants')
-  .dropTableIfExists('species')
+  .dropTableIfExists('specs')
   .dropTableIfExists('users')
 }
