@@ -5,7 +5,7 @@ const getAll = () => {
 }
 
 const getById = id => {
-    return db('users').where({id}).first()
+    return db('users').where({id}).first().select('id','username','phone_number')
 }
 
 const getBy = filter => {
