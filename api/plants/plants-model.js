@@ -36,11 +36,11 @@ const deletePlant = async(plant_id) => {
     return old
 }
 
-const getspecs = (species) => {
+const getSpecs = (species) => {
     return db('specs').where({species}).first()
 }
 
-const addspecs = async(species) => {
+const addSpecs = async(species) => {
     const [specs_id] = await db('specs').insert(species,'specs_id')
     return db('specs').where({specs_id}).first()
 }
@@ -50,8 +50,8 @@ module.exports = {
     getPlantById,
     changePlant,
     deletePlant,
-    getspecs,
-    addspecs,
+    getSpecs,
+    addSpecs,
     addPlant,
     getPlantByFilter
 }

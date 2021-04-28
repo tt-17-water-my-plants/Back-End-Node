@@ -2,7 +2,7 @@ const router = require('express').Router()
 const { transform, checkAccess } = require('../middleware/users-middleware')
 const Users = require('./users-model')
 const Plants = require('../plants/plants-model')
-const { checkspecs, checkOther, checkNickname} = require('../middleware/plants-middleware')
+const { checkSpecs, checkOther, checkNickname} = require('../middleware/plants-middleware')
 
 router.get('/',(req,res,next) => {
     Users.getAll()
@@ -16,7 +16,7 @@ router.get('/:id',checkAccess, transform, (req,res) => {
     res.status(200).json(req.transformed)
 })
 
-router.post('/:id/add',checkAccess, checkspecs, checkOther, checkNickname,(req,res,next) => {
+router.post('/:id/add',checkAccess, checkSpecs, checkOther, checkNickname,(req,res,next) => {
     let plants = req.plants
     const {id} = req.params;
     if(plants.nickname && plants.h2oFrequency && plants.specs_id){

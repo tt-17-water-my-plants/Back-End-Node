@@ -11,16 +11,16 @@ const checkIfPlantExists = async(req,res,next) => {
     }
 }
 
-const checkspecs = async(req,res,next) =>{
+const checkSpecs = async(req,res,next) =>{
     let {species} = req.body;
     if(species && species.trim() !==''){
         species = species.trim().toLowerCase()
-        const checkSpec = await Plants.getspecs(species)
+        const checkSpec = await Plants.getSpecs(species)
         if(checkSpec){
             req.plants = {...req.plants,specs_id:checkSpec.specs_id}
             next()
         }else{
-            const check = await Plants.addspecs({species})
+            const check = await Plants.addSpecs({species})
             req.plants = {...req.plants,specs_id:check.specs_id}
             next()
         }
@@ -65,7 +65,7 @@ const checkNickname = async(req,res,next) => {
 
 module.exports = {
     checkIfPlantExists,
-    checkspecs,
+    checkSpecs,
     checkOther,
     checkDecoded,
     checkNickname

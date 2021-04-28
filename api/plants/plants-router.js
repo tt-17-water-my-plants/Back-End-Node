@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const Plants = require('./plants-model');
-const {checkIfPlantExists, checkspecs, checkOther, checkDecoded, checkNickname} = require('../middleware/plants-middleware')
+const {checkIfPlantExists, checkSpecs, checkOther, checkDecoded, checkNickname} = require('../middleware/plants-middleware')
 
 router.get('/',(req,res,next) => {
     Plants.getAllPlants()
@@ -14,7 +14,7 @@ router.get('/:id',checkIfPlantExists, checkDecoded, (req,res) => {
         res.status(200).json(req.plant)
 })
 
-router.put('/:id',checkIfPlantExists, checkspecs, checkOther, checkDecoded, checkNickname, (req,res,next)=>{
+router.put('/:id',checkIfPlantExists, checkSpecs, checkOther, checkDecoded, checkNickname, (req,res,next)=>{
     const {id} = req.params;
     if(req.plants){
         Plants.changePlant(id,req.plants)
