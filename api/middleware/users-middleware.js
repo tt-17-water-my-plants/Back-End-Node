@@ -145,6 +145,25 @@ const checkAccess = (req, res, next) => {
     }
 }
 
+const checkPhoneUpd = async (req,res,next) => {
+    const {phone_number} = req.body;
+    const {id} = req.params
+    if(phone_number){
+        const check = await Users.getBy({phone_number}).first()
+        if(!check){
+            next()
+        } else{
+            if (check.id !== id){
+                next()
+            } else{
+                res.status(401).json({message:"this phone number belongs to another user"})
+            }
+        }
+    } else{
+        next()
+    }
+}
+
 module.exports = {
     checkUsernameReg,
     checkPassword,
@@ -153,5 +172,6 @@ module.exports = {
     checkUsernameLog,
     transform,
     restricted,
-    checkAccess
+    checkAccess,
+    checkPhoneUpd
 }

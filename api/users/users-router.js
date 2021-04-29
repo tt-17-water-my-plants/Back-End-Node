@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { transform, checkAccess } = require('../middleware/users-middleware')
+const { transform, checkAccess, checkPhoneUpd } = require('../middleware/users-middleware')
 const Users = require('./users-model')
 const Plants = require('../plants/plants-model')
 const { checkSpecs, checkOther, checkNickname} = require('../middleware/plants-middleware')
@@ -32,6 +32,16 @@ router.post('/:id/add',checkAccess, checkSpecs, checkOther, checkNickname,(req,r
     } else{
         res.status(401).json({message:"please enter nickname, h2oFrequency, species"})
     }
+})
+
+router.put('/:id/update',checkAccess, checkPhoneUpd, (req,res,next) =>{
+    const user = req.body;
+    const {id} = req.params
+    Users.update(id,user)
+        .then(updated => {
+            res.status(200).json(updated)
+        })
+        .catch(next)
 })
 
 module.exports = router
