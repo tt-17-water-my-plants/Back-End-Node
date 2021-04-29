@@ -64,13 +64,13 @@ Body:                                     |           Response:
                                           |                        {
                                           |                          "plant_id": 1,
                                           |                          "nickname": "nick1",
-                                          |                          "specs": "banana",
+                                          |                          "species": "banana",
                                           |                          "h2oFrequency": "1d"
                                           |                        },
                                           |                        {
                                           |                          "plant_id": 2,
                                           |                          "nickname": "nick2",
-                                          |                          "specs": "cream",
+                                          |                          "species": "cream",
                                           |                          "h2oFrequency": "2d"
                                           |                        },
                                           |                       ]
