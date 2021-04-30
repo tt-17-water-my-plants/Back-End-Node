@@ -153,7 +153,7 @@ const checkPhoneUpd = async (req,res,next) => {
     let {phone_number} = req.body;
     const {id} = req.params
     if(phone_number){
-        let phone_number = phone_number.trim()
+         phone_number = phone_number.trim()
         if(phone_number.length===10){
         const check = await Users.getBy({phone_number}).first()
         if(!check){
