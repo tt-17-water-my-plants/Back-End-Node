@@ -29,7 +29,7 @@ exports.up = async (knex) => {
         .inTable('users')
         .onUpdate('RESTRICT')
         .onDelete('RESTRICT')
-      tbl.string('image_url').defaultTo('')
+      tbl.string('image_url').defaultTo('https://static.patchplants.com/img/placeholders/patch_placeholder_grey.png')
     })
 }
 
