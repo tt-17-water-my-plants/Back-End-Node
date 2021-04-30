@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const { transform, checkAccess, checkPhoneUpd } = require('../middleware/users-middleware')
 const Users = require('./users-model')
+const bcrypt = require('bcryptjs')
 const Plants = require('../plants/plants-model')
 const { checkSpecs, checkOther, checkNickname} = require('../middleware/plants-middleware')
 
@@ -36,12 +37,20 @@ router.post('/:id/add',checkAccess, checkSpecs, checkOther, checkNickname,(req,r
 
 router.put('/:id/update',checkAccess, checkPhoneUpd, (req,res,next) =>{
     const user = req.body;
+    const phone = {
+        phone_number:user.phone_number
+    }
+    const saved = req.userUpdate;
     const {id} = req.params
-    Users.update(id,user)
-        .then(updated => {
-            res.status(200).json(updated)
-        })
-        .catch(next)
+    if(bcrypt.compareSync(user.password,saved.password)){
+        Users.update(id,phone)
+            .then(updated => {
+                res.status(200).json({message:"updated!",updated})
+            })
+            .catch(next)
+    } else{
+        res.status(403).json({message:"Password doesn't match with our data, try again."})
+    }
 })
 
 module.exports = router

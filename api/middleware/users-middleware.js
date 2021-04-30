@@ -1,5 +1,6 @@
 const Users = require('../users/users-model');
 const jwt = require('jsonwebtoken')
+const db = require('../data/db-config')
 
 const checkUsernameReg = async(req,res,next) => {
     let {username} = req.body;
@@ -131,11 +132,13 @@ const restricted = (req, res, next) => {
     }
 }
 
-const checkAccess = (req, res, next) => {
+const checkAccess = async(req, res, next) => {
     const checker = req.decodedToken
     const {id} = req.params;
+    const user = await db('users').where({id}).first()
     if(checker && id){
         if(checker.id == id){
+            req.userUpdate = user
             next()
         } else{
             res.status(401).json({message:"this is not for you"})
