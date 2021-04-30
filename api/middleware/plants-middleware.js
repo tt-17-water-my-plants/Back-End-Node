@@ -30,8 +30,9 @@ const checkSpecs = async(req,res,next) =>{
 }
 
 const checkOther = async(req,res,next) => {
-    let {nickname, h2oFrequency} = req.body;
-    if(!nickname && !h2oFrequency){
+    let {nickname, h2oFrequency, image_url} = req.body;
+    req.plants = {...req.plants,image_url:image_url}
+    if(!nickname && !h2oFrequency && !image_url){
         next()
     } else{
         if(h2oFrequency){
@@ -39,6 +40,9 @@ const checkOther = async(req,res,next) => {
         }
         if(nickname){
             req.plants = {...req.plants,nickname:nickname}
+        }
+        if(image_url){
+            req.plants = {...req.plants,image_url:image_url}
         }
         next()
     }
@@ -62,6 +66,7 @@ const checkNickname = async(req,res,next) => {
     ? res.status(401).json({message:`plant with nickname ${nickname} already exists`})
     : next()
 }
+
 
 module.exports = {
     checkIfPlantExists,

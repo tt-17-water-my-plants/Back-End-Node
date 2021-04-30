@@ -92,7 +92,8 @@ const transform = async (req,res,next) => {
                 plant_id:plant.plant_id,
                 nickname:plant.nickname,
                 species:plant.species,
-                h2oFrequency:plant.h2oFrequency
+                h2oFrequency:plant.h2oFrequency,
+                image_url:plant.image_url,
             }
             if (exist.plant_id === null){
                 return null

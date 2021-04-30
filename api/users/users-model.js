@@ -32,7 +32,7 @@ const getPlants = (id) => {
     return db('users as u')
     .leftJoin('plants as p','u.id','p.user_id')
     .leftJoin('specs as s','s.specs_id','p.specs_id')
-    .select('u.id','u.username','u.phone_number','p.plant_id','p.nickname','s.species','p.h2oFrequency')
+    .select('u.id','u.username','u.phone_number','p.plant_id','p.nickname','s.species','p.h2oFrequency','p.image_url')
     .where({id})
     .orderBy('p.plant_id')
 }

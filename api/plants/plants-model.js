@@ -4,7 +4,7 @@ const getAllPlants = () => {
     return db('plants as p')
     .leftJoin('specs as s','p.specs_id','s.specs_id')
     .leftJoin('users as u','u.id','p.user_id')
-    .select('p.plant_id','p.nickname','p.h2oFrequency','s.species','u.username as owner')
+    .select('p.plant_id','p.nickname','p.h2oFrequency','s.species','u.username as owner','p.image_url')
     .orderBy('plant_id')
 }
 
@@ -12,7 +12,7 @@ const getPlantById = (plant_id) => {
      return db('plants as p')
     .leftJoin('specs as s','p.specs_id','s.specs_id')
     .leftJoin('users as u','u.id','p.user_id')
-    .select('p.plant_id','p.nickname','p.h2oFrequency','s.species','u.username as owner')
+    .select('p.plant_id','p.nickname','p.h2oFrequency','s.species','u.username as owner','p.image_url')
     .where({plant_id})
     .first()
 }

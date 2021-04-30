@@ -29,6 +29,7 @@ exports.up = async (knex) => {
         .inTable('users')
         .onUpdate('RESTRICT')
         .onDelete('RESTRICT')
+      tbl.string('image_url').defaultTo('')
     })
 }
 
