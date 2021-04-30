@@ -31,7 +31,6 @@ const checkSpecs = async(req,res,next) =>{
 
 const checkOther = async(req,res,next) => {
     let {nickname, h2oFrequency, image_url} = req.body;
-    req.plants = {...req.plants,image_url:image_url}
     if(!nickname && !h2oFrequency && !image_url){
         next()
     } else{
