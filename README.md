@@ -80,7 +80,7 @@ Body:                                     |           Response:
 
 #### User update:
 
-[PUT] `/api/:id/update`
+[PUT] `/api/users/:id/update`
 correct password is mandatory for this action
 
 ```javascript
