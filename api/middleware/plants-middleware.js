@@ -41,7 +41,7 @@ const checkOther = async(req,res,next) => {
         if(nickname){
             req.plants = {...req.plants,nickname:nickname}
         }
-        if(image_url){
+        if(image_url !==''){
             req.plants = {...req.plants,image_url:image_url}
         }
         next()
