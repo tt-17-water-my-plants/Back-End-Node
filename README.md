@@ -78,6 +78,23 @@ Body:                                     |           Response:
 
 ```
 
+#### User update:
+
+[PUT] `/api/:id/update`
+correct password is mandatory for this action
+
+```javascript
+Body:                                     |            Response:
+{                                         |            {
+  "phone_number": string(length = 10),    |              "message": "updated!",
+  "password": string                      |              "updated":{
+                                          |                 "id": 2,
+                                          |                 "username": "Admin"
+                                          |                 "phone_number":"1321567873"
+                                          |              }
+}                                         |            }
+```
+
 #### All plants:
 
 [GET] `/api/plants/`
