@@ -150,9 +150,11 @@ const checkAccess = async(req, res, next) => {
 }
 
 const checkPhoneUpd = async (req,res,next) => {
-    const {phone_number} = req.body;
+    let {phone_number} = req.body;
     const {id} = req.params
     if(phone_number){
+        let phone_number = phone_number.trim()
+        if(phone_number.length===10){
         const check = await Users.getBy({phone_number}).first()
         if(!check){
             next()
@@ -163,6 +165,9 @@ const checkPhoneUpd = async (req,res,next) => {
                 res.status(401).json({message:"this phone number belongs to another user"})
             }
         }
+      } else {
+        res.status(401).json({message:"phone number must contain 10 numbers"})
+    }
     } else{
         next()
     }
